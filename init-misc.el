@@ -1,5 +1,8 @@
+;;; -*- lexical-binding: t; -*-
+
 ;; kill all buffers except exclu_buffers
-(setq exclu_buffers '("*terminal<[0-9]\\{1,\\}>*" "*scratch*"))
+(defvar exclu_buffers '("*terminal<[0-9]\\{1,\\}>*" "*scratch*")
+  "Exlusive buffers.")
 
 (defun kill-buffers-all ()
   "Kill all active buffers except those names matched in exclu_buffers"
@@ -16,12 +19,14 @@
     (setq list (cdr list))))
 
 ;; toggle read only while reading sources
-(setq read-source-code-p nil)
+(defvar zach-read-source-code-p nil
+  "Variable controlling read-only-open.")
+
 (defun toggle-read-source-p ()
   "change the read-source flag"
   (interactive)
-  (if read-source-code-p (setq read-source-code-p nil) (setq read-source-code-p t))
-  (if read-source-code-p (message "read source mode is on") (message "read source mode is off")))
+  (if zach-read-source-code-p (setq zach-read-source-code-p nil) (setq zach-read-source-code-p t))
+  (if zach-read-source-code-p (message "read source mode is on") (message "read source mode is off")))
 
 (defun read-only-open ()
   (when read-source-code-p
@@ -33,5 +38,3 @@
 (add-hook 'find-file-hook 'read-only-open)
 
 (provide 'init-misc)
-
-
