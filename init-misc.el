@@ -50,6 +50,27 @@
   scroll-conservatively 10000
   scroll-preserve-screen-position 1)
 
-(provide 'init-misc)
+;; miscellaneous key mapping
+(global-set-key (kbd "C-c m") 'man)	; man command shortcut
 
+;;; miscellaneous settings
+(setq inhibit-startup-message t) ;去掉欢迎界面
+(tool-bar-mode 0)           ;去掉极丑的菜单栏....
+(scroll-bar-mode 0)         ;去掉滚动条
+(setq-default c-basic-offset 4)
+(setq tab-width 4)
+(global-linum-mode t)    ;; 显示行号
+;; paren-mode settings (括号匹配)
+(show-paren-mode 1)
+;; 字体
+(global-set-key (kbd "C-+") 'text-scale-increase)
+(global-set-key (kbd "C--") 'text-scale-decrease)
+
+(dolist (charset '(kana han symbol cjk-misc bopomofo))
+  (set-fontset-font (frame-parameter nil 'font)
+                    charset
+                    (font-spec :family "PingFang SC" :size 13)))
+
+
+(provide 'init-misc)
 ;;; init-misc.el ends here
