@@ -4,7 +4,6 @@
 
 ;;; Code:
 
-
 ;; kill all buffers except exclu_buffers
 (defvar zach-exclu_buffers '("*terminal<[0-9]\\{1,\\}>*" "*scratch*")
   "Exlusive buffers.")
@@ -22,26 +21,6 @@
 	   (kill-buffer buffer)
 	   )))
     (setq list (cdr list))))
-
-;; toggle read only while reading sources
-(defvar zach-read-source-code-p nil
-  "Variable controlling read-only-open.")
-
-(defun toggle-read-source-p ()
-  "Change the read-source flag."
-  (interactive)
-  (if zach-read-source-code-p (setq zach-read-source-code-p nil) (setq zach-read-source-code-p t))
-  (if zach-read-source-code-p (message "read source mode is on") (message "read source mode is off")))
-
-(defun read-only-open ()
-  (when zach-read-source-code-p
-    (progn
-      (message "File %s is now read-only" (buffer-file-name))
-      (setq buffer-read-only t))
-    ))
-  
-(add-hook 'find-file-hook 'read-only-open)
-
 
 ;; smooth scrolling setting.
 (setq redisplay-dont-pause t
