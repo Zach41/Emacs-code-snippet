@@ -49,7 +49,10 @@
   (set-fontset-font (frame-parameter nil 'font)
                     charset
                     (font-spec :family "PingFang SC" :size 13)))
-
+(set-face-attribute 'default
+		    nil
+		    :height
+		    (+ (face-attribute 'default :height) 15))
 
 (provide 'init-misc)
 ;;; init-misc.el ends here
