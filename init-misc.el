@@ -34,8 +34,9 @@
 
 ;;; miscellaneous settings
 (setq inhibit-startup-message t) ;去掉欢迎界面
-(tool-bar-mode 0)           ;去掉极丑的菜单栏....
-(scroll-bar-mode 0)         ;去掉滚动条
+(tool-bar-mode -1)           ;去掉极丑的工具栏
+(scroll-bar-mode -1)         ;去掉滚动条
+(menu-bar-mode -1)	     ;去掉菜单栏
 (setq-default c-basic-offset 4)
 (setq tab-width 4)
 (global-linum-mode t)    ;; 显示行号
@@ -45,10 +46,6 @@
 (global-set-key (kbd "C-+") 'text-scale-increase)
 (global-set-key (kbd "C--") 'text-scale-decrease)
 
-(dolist (charset '(kana han symbol cjk-misc bopomofo))
-  (set-fontset-font (frame-parameter nil 'font)
-                    charset
-                    (font-spec :family "PingFang SC" :size 13)))
 (set-face-attribute 'default
 		    nil
 		    :height
