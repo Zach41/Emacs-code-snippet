@@ -22,6 +22,16 @@
 (define-key yas-minor-mode-map (kbd "\C-c TAB") 'yas-expand)
 (yas-global-mode t)
 
+;; auto-complete settings
+(require 'auto-complete-config)
+(ac-config-default)
+(add-hook 'asm-mode-hook 'auto-complete-mode)
+(add-hook 'rust-mode-hook 'auto-complete-mode)
+
+;; (global-auto-complete-mode t)
+(ac-set-trigger-key "TAB")
+(ac-set-trigger-key "<tab>")
+
 (provide 'init-yasnippet)
 ;;; init-yasnippet.el ends here
 
