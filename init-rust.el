@@ -17,7 +17,7 @@
 (add-hook 'rust-mode-hook #'flycheck-rust-setup)
 
 ;; rustfmt
-(add-hook 'rust-mode-hook #'rustfmt-enable-on-save)
+;; (add-hook 'rust-mode-hook #'rustfmt-enable-on-save)
 (define-key rust-mode-map (kbd "C-c C-f") #'rust-format-buffer)
 
 ;; rust racer

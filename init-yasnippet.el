@@ -22,15 +22,11 @@
 (define-key yas-minor-mode-map (kbd "\C-c TAB") 'yas-expand)
 (yas-global-mode t)
 
-;; auto-complete settings
-(require 'auto-complete-config)
-(ac-config-default)
-(add-hook 'asm-mode-hook 'auto-complete-mode)
-(add-hook 'rust-mode-hook 'auto-complete-mode)
-
-;; (global-auto-complete-mode t)
-(ac-set-trigger-key "TAB")
-(ac-set-trigger-key "<tab>")
+;; company mode
+(add-hook 'after-init-hook 'global-company-mode)
+(add-hook 'rust-mode-hook 'company-mode)
+(add-hook 'asm-mode-hook 'company-mode)
+(add-hook 'cmake-mode-hook 'company-mode)
 
 (provide 'init-yasnippet)
 ;;; init-yasnippet.el ends here
