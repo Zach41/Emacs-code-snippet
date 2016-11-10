@@ -20,6 +20,8 @@
 (define-key yas-minor-mode-map (kbd "TAB") nil)
 (define-key yas-minor-mode-map (kbd "<backtab>") 'yas-expand)
 (define-key yas-minor-mode-map (kbd "\C-c TAB") 'yas-expand)
+(define-key yas-minor-mode-map (kbd "C-c C-t") 'yas-insert-snippet)
+
 (yas-global-mode t)
 
 (provide 'init-yasnippet)
