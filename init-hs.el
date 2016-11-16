@@ -10,6 +10,7 @@
 
 (add-hook 'c-mode-hook 'hs-minor-mode)
 (add-hook 'emacs-lisp-mode-hook 'hs-minor-mode)
+(add-hook 'rust-mode-hook 'hs-minor-mode)
 
 ;; Hide the comments too when you do a 'hs-hide-all'
 (setq hs-hide-comments nil)
