@@ -15,6 +15,7 @@
 (add-hook 'asm-mode-hook 'company-mode)
 (add-hook 'cmake-mode-hook 'company-mode)
 (add-hook 'toml-mode-hook 'company-mode)
+(add-hook 'python-mode-hook 'company-mode)
 
 (require 'color)
 

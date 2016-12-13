@@ -29,6 +29,11 @@
   scroll-conservatively 10000
   scroll-preserve-screen-position 1)
 
+;; current line's underline highlight
+(global-hl-line-mode 1)
+(set-face-foreground 'highlight nil)
+(set-face-underline 'highlight t)
+
 ;; miscellaneous key mapping
 (global-set-key (kbd "C-c m") 'man)	; man command shortcut
 
