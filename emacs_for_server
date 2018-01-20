@@ -1,9 +1,114 @@
 ;; init-misc
+(require 'package)
+(add-to-list 'package-archives '("melpa" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/"))
+(package-initialize)
 
+(add-to-list 'load-path (expand-file-name "~/.emacs.d/lisp"))
+
+(require 'init-ivy)
+(require 'init-misc)
+(require 'init-company)
+(require 'init-yasnippet)
+(require 'init-cmake)
+;; (require 'init-rtags)
+
+(load-theme 'material t)
+
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (dummy-h-mode swiper magit indent-guide ggtags autopair cmake-font-lock cmake-mode flycheck-rtags rtags window-number lsp-mode yasnippet material-theme counsel company color-theme))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
 ;; init-cmake
+;;; init-cmake --- cmake mode configs -*- lexical-binding: t; -*-
+
+;;; Commentary:
+
+;; cmake configuration
+
+;;; Code:
+
+;; Add cmake listfile names to the mode list.
+(setq auto-mode-alist
+	  (append
+	   '(("CMakeLists\\.txt\\'" . cmake-mode))
+	   '(("\\.cmake\\'" . cmake-mode))
+	   auto-mode-alist))
+
+;; cmake-font-lock
+(autoload 'cmake-font-lock-activate "cmake-font-lock" nil t)
+(add-hook 'cmake-mode-hook 'cmake-font-lock-activate)
+
+(provide 'init-cmake)
+;;; init-cmake ends here
 
 ;; init-ivy
+;;; init-ivy.el --- ivy mode initialization -*- lexical-binding: t; -*-
+
+;;; Commentary:
+;; ivy mode initialization
+
+;;; Code:
+
+(ivy-mode 1)
+(setq ivy-use-virtual-buffers t)
+(global-set-key "\C-s" 'swiper)
+(global-set-key (kbd "C-c C-r") 'ivy-resume)
+(global-set-key (kbd "<f6>") 'ivy-resume)
+(global-set-key (kbd "M-x") 'counsel-M-x)
+(global-set-key (kbd "C-x C-f") 'counsel-find-file)
+(global-set-key (kbd "<f1> f") 'counsel-describe-function)
+(global-set-key (kbd "<f1> v") 'counsel-describe-variable)
+(global-set-key (kbd "<f1> l") 'counsel-load-library)
+(global-set-key (kbd "<f2> i") 'counsel-info-lookup-symbol)
+(global-set-key (kbd "<f2> u") 'counsel-unicode-char)
+(global-set-key (kbd "C-c g") 'counsel-git)
+(global-set-key (kbd "C-c j") 'counsel-git-grep)
+(global-set-key (kbd "C-c k") 'counsel-ag)
+(global-set-key (kbd "C-x l") 'counsel-locate)
+(global-set-key (kbd "C-S-o") 'counsel-rhythmbox)
+(define-key read-expression-map (kbd "C-r") 'counsel-expression-history)
+
+(provide 'init-ivy)
+;;; init-ivy.el ends here
 
 ;; init-yasnippet
+;;; init-yasnippet.el --- yasnippet init file -*- lexical-binding: t; -*-
+
+;;; Commentary:
+
+;; yasnippet initialization file
+
+;;; Code:
+
+(require 'yasnippet)
+
+(defvar zach-yasnippet-dir (expand-file-name "~/.emacs.d/snippets")
+  "Personal snippets.")
+
+(if (and (file-exists-p zach-yasnippet-dir) (not (member zach-yasnippet-dir yas-snippet-dirs)))
+    (add-to-list 'yas-snippet-dirs zach-yasnippet-dir))
+
+(yas-reload-all)
+
+(define-key yas-minor-mode-map (kbd "<tab>") nil)
+(define-key yas-minor-mode-map (kbd "TAB") nil)
+(define-key yas-minor-mode-map (kbd "<backtab>") 'yas-expand)
+(define-key yas-minor-mode-map (kbd "\C-c TAB") 'yas-expand)
+(define-key yas-minor-mode-map (kbd "C-c C-t") 'yas-insert-snippet)
+
+(yas-global-mode t)
+
+(provide 'init-yasnippet)
+;;; init-yasnippet.el ends here
 
 ;; plugins
